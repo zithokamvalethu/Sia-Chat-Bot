@@ -1,2 +1,2 @@
 export const SAVE_MESSAGES = "SAVE_MESSAGES";
-export const SAVE_SINGLE_CONVO = "SAVE_SINGLE_CONVO";
+export const SAVE_USERS = "SAVE_USERS";

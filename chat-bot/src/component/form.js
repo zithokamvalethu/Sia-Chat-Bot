@@ -10,6 +10,7 @@ const Form = (props) => {
     chats,
     handleHelpMsg,
     handleIssueMsg,
+    handleSolutions
   } = props;
   // console.log("handleBotMessage", handleBotMessage);
   // console.log("chats.message", chats);
@@ -70,6 +71,21 @@ const Form = (props) => {
                     id="box"
                     className="btn btn-outline-danger"
                     value={options}
+                  />
+                </div>
+              );
+            })}
+
+{help &&
+            help.map((solutions, i) => {
+              return (
+                <div key={i}>
+                  <p
+                    onClick={(e) => {
+                      handleSolutions(e);
+                    }}
+                    className="solutions"
+                    value={solutions}
                   />
                 </div>
               );

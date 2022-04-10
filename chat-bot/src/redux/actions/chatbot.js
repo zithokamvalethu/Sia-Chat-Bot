@@ -1,28 +1,27 @@
 import * as actions from "../actionTypes";
-const SAVE_MESSAGES = "SAVE_MESSAGE";
-const SAVE_SINGLE_CONVO = "SAVE_SINGLE_CONVO";
+// import {messagesReducer, usersReducer} from "../reducer/messageReducer/chatsReducer";
 const axios = require("axios");
 
-export const getMessages = () => {
+export const getUsers = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:4000/messages");
-      const messages = response.data;
-      dispatch({ type: actions.SAVE_MESSAGES, payload: messages });
+      const response= await axios.get("http://localhost:4000/names");
+      const users = response.data;
+      dispatch({ type: actions.SAVE_USERS, payload: users});
     } catch (e) {
       console.log(e);
     }
   };
 };
 
-export const addConversation = (message) => {
+export const addBotMessages = (message) => {
   return async (dispatch) => {
     const response = await axios.post(
       "http://localhost:4000/messages",
       message
     );
     const savedConversation = response.data;
-    dispatch({ type: actions.SAVE_SINGLE_CONVO, payload: savedConversation });
+    dispatch({ type: actions.SAVE_MESSAGES, payload: savedConversation });
   };
 };
-module.exports = { SAVE_MESSAGES, SAVE_SINGLE_CONVO };
+// module.exports = { SAVE_MESSAGES, SAVE_USERS };

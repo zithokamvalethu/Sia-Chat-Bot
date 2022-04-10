@@ -5,18 +5,18 @@ import Form from "./form";
 
 function Chats() {
   const [formData, setFormData] = useState({
-    message: "",
+    name: "",
   });
-  //   const [displayBotMessage, setDisplayBotMessage] = useState([]);
+    const [userName, setUserName] = useState([]);
   const [chats, setChats] = useState([]);
-
+  const [help, setHelp] = useState([]);
+  
   useEffect(() => {
     setTimeout(handleHelpMsg, 2000);
     // setTimeout(handleIssueMsg, 2000);
     // Update the document title using the browser API
     // handleIssueMsg();
   });
-  const [help, setHelp] = useState([]);
 
 
   const handleChange = (event) => {
@@ -24,13 +24,13 @@ function Chats() {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (state, stateFn) => {
-    if (chats.length === 0) {
-      //   setChats([...chats, formData]);
-      stateFn((state) => [...state, formData.message]);
+  const handleSubmit = () => {
+    if (userName.length === 0) {
+        setUserName([...userName, formData]);
+       [...userName, formData.name];
     }
     setFormData({ message: "" });
-    // handleBotMessage();
+    handleHelpMsg();
   };
 
   const handleHelpMsg = () => {
@@ -46,42 +46,43 @@ function Chats() {
   };
 
   const handleIssueMsg = (e) => {
-    var convo = dialogue[0];
+    var conversation = dialogue[0];
     var value = e.target.value;
     if (value.match("Having a problem with updating Chrome Version?")) {
-      setChats([...chats].concat(convo.updatingChrome));
+      setChats([...chats].concat(conversation.updatingChrome));
     } else if (value.match("Having a problem creating Gmail account")) {
-      setChats([...chats].concat(convo.creatingGmailAccount));
+      setChats([...chats].concat(conversation.creatingGmailAccount));
     } else if (value.match("Having problem signing-In to google Chrome")) {
-      setChats([...chats].concat(convo.signInToChrome));
+      setChats([...chats].concat(conversation.signInToChrome));
     }
   };
+
 
   const handleSolutions = () => {
       var solutions = dialogue[0];
       var value = e.target.value;
-      if (value.match("Having a problem with updating Chrome Version?")) {
-        setChats([...chats].concat(solutions.updatingChrome));
-      } else if (value.match("Having a problem creating Gmail account")) {
-        setChats([...chats].concat(solutions.creatingGmailAccount));
-      } else if (value.match("Having problem signing-In to google Chrome")) {
-        setChats([...chats].concat(solutions.signInToChromeza));
+      if (value.match("Update Google Chrome?")) {
+        setHelp([...help].concat(solutions.botUpdateSolutions));
+      } else if (value.match("Create A google For Myself")) {
+        setHelp([...help].concat(solutions. botGmailSolution));
+      } else if (value.match("Forgot password")) {
+        setHelp([...help].concat(solutions. botSignInSolution));
       }
     };
+    return (
+      <div>
+        <Form
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          formData={formData}
+          chats={chats}
+          handleHelpMsg={handleHelpMsg}
+          handleIssueMsg={handleIssueMsg}
+          handleSolutions={handleSolutions}
+
+        />
+      </div>
+    );
   }
-
-  return (
-    <div>
-      <Form
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        formData={formData}
-        chats={chats}
-        handleHelpMsg={handleHelpMsg}
-        handleIssueMsg={handleIssueMsg}
-      />
-    </div>
-  );
-}
-
+  
 export default Chats;
