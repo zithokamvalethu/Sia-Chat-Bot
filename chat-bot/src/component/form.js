@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { dialogue } from "./config/messageConfig";
 const Form = (props) => {
@@ -8,9 +8,10 @@ const Form = (props) => {
     handleSubmit,
     formData,
     chats,
-    handleHelpMsg,
+    // handleHelpMsg,
+    help,
     handleIssueMsg,
-    handleSolutions
+    handleSolutions,
   } = props;
   // console.log("handleBotMessage", handleBotMessage);
   // console.log("chats.message", chats);
@@ -53,11 +54,6 @@ const Form = (props) => {
             className="btn btn-outline-danger"
             value={dialogue[0].introMessage.greetingMessage}
           />
-          <div>
-            Welcome to Sia the Chat Bot Please Provide Us With Your Name On The
-            Input
-          </div>
-
           {chats &&
             chats.map((options, index) => {
               return (
@@ -66,7 +62,6 @@ const Form = (props) => {
                     onClick={(e) => {
                       handleIssueMsg(e);
                     }}
-                    // onClick={handleIssueMsg()}
                     type="button"
                     id="box"
                     className="btn btn-outline-danger"
@@ -76,42 +71,45 @@ const Form = (props) => {
               );
             })}
 
-{help &&
-            help.map((solutions, i) => {
-              return (
-                <div key={i}>
-                  <p
-                    onClick={(e) => {
-                      handleSolutions(e);
-                    }}
-                    className="solutions"
-                    value={solutions}
-                  />
-                </div>
-              );
-            })}
-        </div>
+          <div>
+            {help &&
+              help.map((solutions, index) => {
+                return (
+                  <div key={index}>
+                    <input
+                      onClick={(e) => {
+                        handleSolutions(e);
+                      }}
+                      type="button"
+                      id="box"
+                      className="btn btn-outline-danger"
+                      value={solutions}
+                    />
+                  </div>
+                );
+              })}
+          </div>
 
-        <div className="chatbot-footer">
-          <form onSubmit={handleSubmit} className="msger-inputarea">
-            <input
-              type="text"
-              name="message"
-              className="msger-input"
-              onChange={handleChange}
-              value={formData.message}
-              placeholder="THIS IS SIA THE CHAT BOT HOW CAN I HELP YOU..."
-            />
-            <button type="submit" className="msger-send-btn">
-              Send
-            </button>
-            <hr />
-          </form>
+          {/* <div className="chatbot-footer">
+            <form onSubmit={handleSubmit} className="msger-inputarea">
+              <input
+                type="text"
+                name="message"
+                className="msger-input"
+                onChange={handleChange}
+                value={formData.message}
+                placeholder="THIS IS SIA THE CHAT BOT HOW CAN I HELP YOU..."
+              />
+              <button type="submit" className="msger-send-btn">
+                Send
+              </button>
+              <hr />
+            </form>
+          </div> */}
         </div>
       </div>
     </div>
   );
-  // );
 };
 
 export default Form;

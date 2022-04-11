@@ -7,10 +7,10 @@ function Chats() {
   const [formData, setFormData] = useState({
     name: "",
   });
-    const [userName, setUserName] = useState([]);
+  // const [userName, setUserName] = useState([]);
   const [chats, setChats] = useState([]);
   const [help, setHelp] = useState([]);
-  
+
   useEffect(() => {
     setTimeout(handleHelpMsg, 2000);
     // setTimeout(handleIssueMsg, 2000);
@@ -18,20 +18,18 @@ function Chats() {
     // handleIssueMsg();
   });
 
-
   const handleChange = (event) => {
     event.preventDefault();
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = () => {
-    if (userName.length === 0) {
-        setUserName([...userName, formData]);
-       [...userName, formData.name];
-    }
-    setFormData({ message: "" });
-    handleHelpMsg();
-  };
+  // const handleSubmit = () => {
+  //   if (userName.length === 0) {
+  //     setUserName([...userName, formData.name]);
+  //   }
+  //   setFormData({ message: "" });
+  //   // handleHelpMsg();
+  // };
 
   const handleHelpMsg = () => {
     // let botMainMenuOptions = dialogue[0].introMessage;
@@ -57,32 +55,32 @@ function Chats() {
     }
   };
 
+  const handleSolutions = (e) => {
+    var solutions = dialogue[0];
+    var value = e.target.value;
+    if (value.match("Update Google Chrome?")) {
+      setChats([...chats].concat(solutions.botUpdateSolution));
+      console.log("solutions", solutions.botUpdateSolution);
+    } else if (value.match("Create A google For Myself")) {
+      setChats([...chats].concat(solutions.botGmailSolution));
+    } else if (value.match("Forgot password")) {
+      setChats([...chats].concat(solutions.botSignInSolution));
+    }
+  };
+  return (
+    <div>
+      <Form
+        handleChange={handleChange}
+        // handleSubmit={handleSubmit}
+        formData={formData}
+        chats={chats}
+        help={help}
+        handleHelpMsg={handleHelpMsg}
+        handleIssueMsg={handleIssueMsg}
+        handleSolutions={handleSolutions}
+      />
+    </div>
+  );
+}
 
-  const handleSolutions = () => {
-      var solutions = dialogue[0];
-      var value = e.target.value;
-      if (value.match("Update Google Chrome?")) {
-        setHelp([...help].concat(solutions.botUpdateSolutions));
-      } else if (value.match("Create A google For Myself")) {
-        setHelp([...help].concat(solutions. botGmailSolution));
-      } else if (value.match("Forgot password")) {
-        setHelp([...help].concat(solutions. botSignInSolution));
-      }
-    };
-    return (
-      <div>
-        <Form
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          formData={formData}
-          chats={chats}
-          handleHelpMsg={handleHelpMsg}
-          handleIssueMsg={handleIssueMsg}
-          handleSolutions={handleSolutions}
-
-        />
-      </div>
-    );
-  }
-  
 export default Chats;
