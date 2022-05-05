@@ -1,28 +1,31 @@
-const { retrieveData } = require("../retrieveData");
-const { addData } = require("../addData/insertData");
+const dataMessages = require("../botMessageConfig.json");
 
+// // let dataMessages = botTreeMessages[0];
 const messages = (app) => {
-  app.get("/", async (req, res) => {
-    const messages = await getMessages();
-    console.log("messages", messages);
-    res.send(messages);
-  });
-
-  app.post("/message", async (req, res) => {
-    try {
-      const { messages, response } = req.body;
-      if (messages == "" || response == "") {
-        return res.send(400);
-      }
-
-      const conversation = new Messages({ messages, response });
-      const value = await conversation.save();
-      console.log(value);
-      res.send(value);
-    } catch (err) {
-      console.log(err);
-      res.send(501);
-    }
+  // app.get("/message", async (req, res) => {
+  //   let data = dataMessages.botTreeMessages.introMessage;
+  //   res.send(data);
+  //   // console.log("data", data);
+  // });
+  app.get("/message", async (req, res) => {
+    let options = dataMessages.botTreeMessages.msgOptions;
+    res.send(options);
+    console.log("options", options);
   });
 };
-module.exports = { messages, retrieveData, addData };
+const solutions = (app) => {
+  app.get("/solution", async (req, res) => {
+    let solutions = dataMessages.botTreeMessages.options;
+    res.send(solutions);
+    console.log("solution", solutions);
+  });
+};
+
+const webSolutions = (app) => {
+  app.get("/help", async (req, res) => {
+    let solutions = dataMessages.botTreeMessages.solutions1;
+    res.send(solutions);
+    console.log("solution1", solutions);
+  });
+};
+module.exports = { messages, solutions, webSolutions };

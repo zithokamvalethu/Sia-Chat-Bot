@@ -1,0 +1,28 @@
+{
+    "botTreeMessages":{
+
+        "msgOptions":{
+         "introMessage": ["Hi.This Is Sia The Chat Bot Can I Help You?" ],
+         "option1":["I can't log in","I have a problem with Java","The system is down"]
+       
+         
+        },
+        
+"options":{
+          "option1": ["You forgot your password" ,"You forgot your log-in username","LACK OF A USER-FRIENDLY INTERFACE"],
+          "option2":["It has a slow startup time", "Spring Security","Testing"],
+        "option3": ["Not accessible over mobile","Not accessible over the web"]
+        },
+ 
+
+           "solutions1":{ 
+        "option1": ["Go to the Forgot Password page, step2 Enter your username, but leave the email box blank!Click Continue.Check your email inbox for the password reset email. We send it to the email address associated with your SurveyMonkey account","To find your username and reset your password .Go to the Forgot Password or Username page. Enter your account email address, but leave the username box blank!Click Continue.Check your email inbox—you'll get an email with a list of any usernames associated with your account email address.Click on a username in the email. This will take you to the Forgot Password page with your selected username ready to go. Make sure to leave the email box blank!Click Continue. Check your email inbox for the password reset email.","Look for Help option and log your issue with the help desk and check your email or wait for a call to get help"],
+        "option2": ["Restart your phone .Important - Settings can vary by phone. For more info, contact your device manufacturer.On most phones, press your phone's Power button for about 30 seconds or until your phone  restarts .You might need to tap Restart Restart .","Contact the app developer .Important: If you tried the troubleshooting steps but still have trouble, contact us or the app developer.If you can not update any apps, or if you have trouble with Google apps, contact Google Play. If you have trouble with one app but can use other apps without a problem, contact the app developer."],
+        "option3": ["Un-install your application","Reboot the whole system", "Switch your wifi on and off"]
+        }
+        
+        }
+    
+    }
+
+

@@ -1,0 +1,12 @@
+const express = require("express");
+const app = express();
+const port = 3009;
+const cors = require("cors");
+const { messages, solutions, webSolutions } = require("./routes/conversation");
+app.use(express.json());
+app.use(cors());
+messages(app);
+solutions(app);
+webSolutions(app);
+// app.get("/", (req, res) => res.send("Hello World!"));
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
