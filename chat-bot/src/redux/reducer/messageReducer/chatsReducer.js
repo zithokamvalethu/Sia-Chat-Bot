@@ -1,28 +1,28 @@
 import * as actions from "../../actionTypes/index";
 
-const initialState = {
+let initalState = {
   messages: [],
-  // users: [],
+  solutions: [],
+  solution: [],
 };
-
-export const messageReducer = (state = initialState, action) => {
+export const messageReducer = (state = initalState, action) => {
   switch (action.type) {
     case actions.GET_MESSAGES:
       return {
         ...state,
         messages: action.payload,
       };
-    // case actions.SAVE_BOT_MESSAGE:
-    //   console.log("action", action.payload);
-    //   return {
-    //     ...state,
-    //     messages: [...state.messages, action.payload],
-    //   };
-    // case actions.GET_BOT_MESSAGE:
-    //   return {
-    //     ...state,
-    //     messages: action.payload,
-    //   };
+
+    case actions.GET_SOLUTIONS:
+      return {
+        ...state,
+        solutions: action.payload,
+      };
+    case actions.GET_WEB_SOLUTIONS:
+      return {
+        ...state,
+        solution: [...state.solution, action.payload],
+      };
 
     default:
       return state;
